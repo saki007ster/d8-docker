@@ -138,17 +138,17 @@ Using docker exec {ID} {COMMAND}, to run your own commands.
  ```
 
 #### For older Drupal versions check:
-https://github.com/saki007ster/drupal7-docker-app
+https://github.com/saki007ster/d7-docker
 
 #### You can also clone this repo somewhere and build it,
 ```
-git clone https://github.com/saki007ster/drupal8-docker-app.git
-cd drupal8-docker-app
+git clone https://github.com/saki007ster/d8-docker.git
+cd d8-docker
 sudo docker build -t <yourname>/drupal8 .
 ```
 #### Or build it directly from github,
 ```
-docker build -t saki007ster/drupal8 https://github.com/saki007ster/drupal8-docker-app.git
+docker build -t saki007ster/drupal8 https://github.com/saki007ster/d8-docker.git
 ```
 
 Note1: you cannot have port 80 already used or the container will not start.
