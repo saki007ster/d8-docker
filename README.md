@@ -80,7 +80,7 @@ $ eval "$(docker-machine env default)”
 ## Get the image from this repo and run it using port 80:
 
 ```
-docker run -i -t -p 80:80 saki007ster/drupal8
+docker run -i -t -p 80:80 saki007ster/d8-docker
 ```
 That's it!
 
@@ -97,14 +97,14 @@ git clone --depth 5 --branch 8.0.x http://git.drupal.org/project/drupal.git
 docker run -it \
 --volume=$HOME/d8/mysql:/var/lib/mysql \
 --volume=$HOME/d8/drupal:/var/www/html \
--p 80:80 -p 3306:3306 saki007ster/drupal8
+-p 80:80 -p 3306:3306 saki007ster/d8-docker
 ```
 
 You can remove the local settings.php and the mysql directory for a fresh Drupal8 install with existent code:
 
 ```
 cd $HOME/d8
-rm -rf mysql/ repo/sites/default/settings.php
+rm -rf mysql/ drupal/sites/default/settings.php
 ```
 
 
@@ -123,7 +123,7 @@ sudo docker start -i -a (container ID)
 ### Example usage for testing:
 Using docker exec {ID} {COMMAND}, to run your own commands.
 ```
-~$ docker run --name mydrupal8 -i -t -p 80:80 saki007ster/drupal8
+~$ docker run --name mydrupal8 -i -t -p 80:80 saki007ster/d8-docker
 
 ~$ docker exec mydrupal8  uptime
  10:02:59 up 16:41,  0 users,  load average: 1.17, 0.92, 0.76
@@ -144,11 +144,11 @@ https://github.com/saki007ster/d7-docker
 ```
 git clone https://github.com/saki007ster/d8-docker.git
 cd d8-docker
-sudo docker build -t <yourname>/drupal8 .
+sudo docker build -t <yourname>/d8-docker .
 ```
 #### Or build it directly from github,
 ```
-docker build -t saki007ster/drupal8 https://github.com/saki007ster/d8-docker.git
+docker build -t saki007ster/d8-docker https://github.com/saki007ster/d8-docker.git
 ```
 
 Note1: you cannot have port 80 already used or the container will not start.
@@ -156,7 +156,7 @@ In that case you can start by setting: `-p 8080:80`
 
 Note2: To run the container in the background
 ```
-sudo docker run -d -t -p 80:80 <yourname>/drupal8
+sudo docker run -d -t -p 80:80 <yourname>/d8-docker
 ```
 
 ## More docker awesomeness
@@ -165,7 +165,7 @@ This will create an ID that you can start/stop/commit changes:
 ```
 # docker ps
 ID             IMAGE                      COMMAND                   CREATED              STATUS              PORTS
-dda662a2a3f9   <yourname>/drupal8:latest   /bin/bash /start.sh      3 minutes ago       Up 6 seconds        80->80
+dda662a2a3f9   <yourname>/d8-docker:latest   /bin/bash /start.sh      3 minutes ago       Up 6 seconds        80->80
 ```
 
 Start/Stop
@@ -176,17 +176,17 @@ sudo docker start dda662a2a3f9
 
 Commit the actual state to the image
 ```
-sudo docker commit dda662a2a3f9 <yourname>/drupal8
+sudo docker commit dda662a2a3f9 <yourname>/d8-docker
 ```
 
 Starting again with the commited changes
 ```
-sudo docker run -d -t -p 80:80 <yourname>/drupal8 /start.sh
+sudo docker run -d -t -p 80:80 <yourname>/d8-docker /start.sh
 ```
 
 Shipping the container image elsewhere
 ```
-sudo docker push  <yourname>/drupal8
+sudo docker push  <yourname>/d8-docker
 ```
 
 You can find more images using the [Docker Index][docker_index].
